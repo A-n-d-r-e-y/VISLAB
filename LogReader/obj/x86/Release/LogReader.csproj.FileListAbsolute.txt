@@ -1,0 +1,16 @@
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\bin\Release\LogReader.exe.config
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\bin\Release\LogReader.exe
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\bin\Release\LogReader.XmlSerializers.dll
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\bin\Release\LogReader.pdb
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\ResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\MainWindow.baml
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\MainWindow.g.cs
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\App.g.cs
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader_MarkupCompile.cache
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader.g.resources
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader.Properties.Resources.resources
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\GenerateResource.read.1.tlog
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\GenerateResource.write.1.tlog
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader.exe
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader.pdb
+D:\Documents\Visual Studio 2010\Projects\TTI\VisLab\LogReader\obj\x86\Release\LogReader.XmlSerializers.dll

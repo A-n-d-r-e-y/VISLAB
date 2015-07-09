@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="VisLab.Controls.ModelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:styles="clr-namespace:VisLab.Styles"
+             xmlns:this="clr-namespace:VisLab.Classes.Implementation.Analysis.Boundaries.Controls"
+             xmlns:shapes="clr-namespace:System.Windows.Shapes;assembly=PresentationFramework"
+             mc:Ignorable="d" FontFamily="Segoe UI"
+             d:DesignHeight="300" d:DesignWidth="300" Background="Transparent" SizeChanged="UserControl_SizeChanged" Name="modelControl">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/DataGridStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <styles:StringFormattingConverter x:Key="stringFormattingConverter" />
+            <styles:MathConverter x:Key="mathConverter" />
+            <Style TargetType="{x:Type this:DataCollectionControl}">
+                <EventSetter Event="MouseDown" Handler="DataCollectionControl_MouseDown" />
+                <EventSetter Event="MouseMove" Handler="DataCollectionControl_MouseMove" />
+                <EventSetter Event="MouseEnter" Handler="DataCollectionControl_MouseEnter" />
+                <EventSetter Event="MouseLeave" Handler="DataCollectionControl_MouseLeave" />
+                <EventSetter Event="MouseUp" Handler="DataCollectionControl_MouseUp" />
+            </Style>
+            <Style TargetType="{x:Type shapes:Ellipse}">
+                <EventSetter Event="MouseEnter" Handler="Ellipse_MouseEnter" />
+                <EventSetter Event="MouseLeave" Handler="Ellipse_MouseLeave" />
+                <EventSetter Event="MouseUp" Handler="Ellipse_MouseUp" />
+            </Style>
+            <Style TargetType="{x:Type Polyline}">
+                <EventSetter Event="MouseDown" Handler="Polyline_MouseDown" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid MouseDown="UserControl_MouseDown" MouseUp="UserControl_MouseUp" MouseMove="UserControl_MouseMove" MouseWheel="UserControl_MouseWheel" Background="Transparent">
+            <Ellipse Name="ellipse" Height="40" Width="40" Stroke="Gray" StrokeThickness="1" />
+            <Canvas Name="cnvModel" Background="Transparent" RenderTransformOrigin="0.5 0.5"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Canvas.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform x:Name="ttModel" X="0" Y="0" />
+                        <ScaleTransform x:Name="stModel" 
+                                        ScaleY="{Binding ElementName=slider, Path=Value, Mode=TwoWay}" 
+                                        ScaleX="{Binding ElementName=slider, Path=Value, Mode=TwoWay}" />
+                        <ScaleTransform ScaleY="-1" />
+                    </TransformGroup>
+                </Canvas.RenderTransform>
+                <Ellipse Canvas.Left="0" Canvas.Top="0" Fill="Red" Height="20" Width="20" />
+            </Canvas>
+            <StackPanel Name="panel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" >
+                <ToggleButton Name="btnFixedPoints" Content="Fixed boxes" Checked="btnFixedPoints_Checked" Unchecked="btnFixedPoints_Unchecked" />
+                <TextBlock Name="tbkXCoordinate" />
+                <TextBlock Name="tbkYCoordinate" />
+                <TextBlock Text="{Binding ElementName=stModel, Path=ScaleX}" />
+            </StackPanel>
+            <StackPanel Name="spModelDescription" HorizontalAlignment="Left" Margin="20">
+                <TextBlock FontSize="32">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}#{1}">
+                            <Binding ElementName="modelControl" Path="ModelName" />
+                            <Binding ElementName="modelControl" Path="ExperimentNumber" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="{Binding Data.NumberOfRuns, StringFormat=Number of runs: {0}}" />
+                <TextBlock Text="{Binding Data.Description, StringFormat=Description: {0}}" />
+            </StackPanel>
+            <Grid Name="countersGrid" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,20,145,0"
+              Background="{StaticResource NormalBorderBrush}" OpacityMask="#D4000000" MouseDown="flyingGrid_MouseDown">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="ttDataGrid" X="0" Y="0" />
+                </Grid.RenderTransform>
+                <CheckBox Name="checkGrouping" Content="Grouping" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="4" Checked="checkGrouping_Checked"  Unchecked="checkGrouping_Unchecked" />
+                <CheckBox Name="checkMini" Content="Mini" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="8,4" Checked="checkMini_Checked" Unchecked="checkMini_Unchecked" />
+                <DataGrid Name="dgCounters" Grid.Column="1" Margin="5,20,5,5" Width="360" FontSize="16" Background="Transparent" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed"
+                      MaxHeight="500" SelectionMode="Single" IsReadOnly="True" CanUserResizeRows="False" ClipboardCopyMode="IncludeHeader" MouseMove="datagrid_MouseMove" MinHeight="76"
+                      GridLinesVisibility="Horizontal" HeadersVisibility="Column" SelectionChanged="datagrid_SelectionChanged" IsSynchronizedWithCurrentItem="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="MeasurId" Binding="{Binding MeasurId}" Visibility="Hidden" />
+                        <DataGridTextColumn Header="Point Id" Binding="{Binding PointId}" />
+                        <DataGridTextColumn Header="Point Name" Binding="{Binding Name}" Width="*" />
+                        <DataGridTextColumn Header="Link" Binding="{Binding Link}" />
+                        <DataGridTextColumn Header="Coord" Binding="{Binding Coord}" Visibility="Hidden" />
+                    </DataGrid.Columns>
+                    <DataGrid.GroupStyle>
+                        <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <DataGridRowsPresenter/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </DataGrid.GroupStyle>
+                </DataGrid>
+                <Grid.LayoutTransform>
+                    <ScaleTransform x:Name="stBorder" ScaleX="1" ScaleY="1"/>
+                </Grid.LayoutTransform>
+            </Grid>
+            <Grid Name="trTimesGrid" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,90,145,0"
+              Background="{StaticResource NormalBorderBrush}" OpacityMask="#D4000000" MouseDown="trTimesGrid_MouseDown">
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="ttTrTimesGrid" X="0" Y="0" />
+                </Grid.RenderTransform>
+                <DataGrid Name="dgTrTimes" Grid.Column="1" Margin="5,10,5,5" Width="360" FontSize="16" Background="Transparent" AutoGenerateColumns="False" RowDetailsVisibilityMode="Collapsed"
+                      MaxHeight="500" SelectionMode="Single" IsReadOnly="True" CanUserResizeRows="False" ClipboardCopyMode="IncludeHeader" MouseMove="dgTrTimes_MouseMove"
+                      GridLinesVisibility="Horizontal" HeadersVisibility="Column" SelectionChanged="dgTrTimes_SelectionChanged"  IsSynchronizedWithCurrentItem="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="No" Binding="{Binding No}" />
+                        <DataGridTextColumn Header="Section Name" Binding="{Binding Name}" Width="*" />
+                        <DataGridTextColumn Header="FromLink" Binding="{Binding FromLink}" />
+                        <DataGridTextColumn Header="ToLink" Binding="{Binding ToLink}" />
+                        <DataGridTextColumn Header="Coord" Binding="{Binding Coord}" Visibility="Hidden" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid.LayoutTransform>
+                    <ScaleTransform x:Name="stTrTimesGrid" ScaleX="1" ScaleY="1"/>
+                </Grid.LayoutTransform>
+            </Grid>
+        </Grid>
+        <Slider Cursor="Hand" Name="slider" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="400"
+                Margin="20,5" Minimum="0.05" Maximum="40" TickPlacement="BottomRight" Value="1" TickFrequency="0.5" ValueChanged="slider_ValueChanged" />
+    </Grid>
+</UserControl>

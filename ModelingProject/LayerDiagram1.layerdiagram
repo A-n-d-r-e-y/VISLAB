@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="647492dc-74ce-48ec-865d-8e2319b394b1" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="055866ea-2378-4232-8f58-9fa636c8801d" name="Слой реализации">
+      <childLayers>
+        <layer Id="031b7ce9-959f-4cdd-9b53-619ae763a094" name="Бизнес-логика">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="4a8a80c0-19ac-49e4-bc7e-5e119ba2ff8e" direction="Forward">
+              <layerMoniker Id="647c681b-5730-47bf-a4c6-32133ca045fa" />
+            </dependencyFromLayerToLayer>
+            <dependencyFromLayerToLayer Id="56a60f1c-24f0-4aeb-b1af-d714f783d117" direction="Forward">
+              <layerMoniker Id="b14374d9-4a56-49c7-9337-e9917aced1da" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+        <layer Id="647c681b-5730-47bf-a4c6-32133ca045fa" name="Модель данных" />
+        <layer Id="65ebfeea-aec1-4eed-bbcf-4ea968b45048" name="Интерфейс пользователя">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="ade3ce68-76cd-464f-90f9-4ba04e66bc1f" direction="Forward">
+              <layerMoniker Id="031b7ce9-959f-4cdd-9b53-619ae763a094" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="b14374d9-4a56-49c7-9337-e9917aced1da" name="Слой интеграции">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="8da36d82-356d-4e28-82c2-01e071d922e6" direction="Forward">
+          <layerMoniker Id="647c681b-5730-47bf-a4c6-32133ca045fa" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="1ac09430-387b-4387-bdc1-94f7d39f430f" name="Файлы" />
+        <layer Id="5e5c37a7-71a5-456b-ad53-68260cf853c1" name="VISSIM">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="5dbc6f9c-8ac3-46fe-a635-652f5d4176ee" direction="Forward">
+              <layerMoniker Id="1ac09430-387b-4387-bdc1-94f7d39f430f" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+        <layer Id="1205dad2-281b-42a3-8c91-c0bcf6908b64" name="COM API">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="179ccf21-7285-4bf8-b07c-c5776066bdbe" direction="Forward">
+              <layerMoniker Id="5e5c37a7-71a5-456b-ad53-68260cf853c1" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>

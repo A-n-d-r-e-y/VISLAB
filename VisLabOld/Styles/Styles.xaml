@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <RadialGradientBrush x:Key="rgbBlueBrush">
+        <GradientStop Color="#FF508EF8" Offset="0" />
+        <GradientStop Color="#FF003BFF" Offset="1" />
+    </RadialGradientBrush>
+
+    <LinearGradientBrush x:Key="rgbInvertLightBlueBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF98B9E8" Offset="0" />
+        <GradientStop Color="White" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="lgbLightBlueBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="White" Offset="0" />
+        <GradientStop Color="#FF98B9E8" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="lgbLightDarkBlueBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE7EFFD" Offset="0" />
+        <GradientStop Color="#FF72A0EA" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="lgbInvertLightDarkBlueBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE7EFFD" Offset="1" />
+        <GradientStop Color="#FF72A0EA" Offset="0" />
+    </LinearGradientBrush>
+
+    <Button x:Key="test">
+        <Button.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFE7EFFD" Offset="0" />
+                <GradientStop Color="#FF72A0EA" Offset="1" />
+            </LinearGradientBrush>
+        </Button.Background>
+    </Button>
+
+</ResourceDictionary>

@@ -1,0 +1,33 @@
+﻿<this:AnimatedControl x:Class="VisLab.Classes.Implementation.Analysis.Boundaries.Controls.ColumnSelectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:this="clr-namespace:VisLab.Classes.Implementation.Analysis.Boundaries.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Border Margin="2" CornerRadius="10" BorderThickness="3" BorderBrush="Gray" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DataGrid Name="datagrid" Margin="10" AutoGenerateColumns="False" ItemsSource="{Binding}" GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                      CanUserAddRows="False" CanUserResizeRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Column" Binding="{Binding Header}" />
+                    <!--<DataGridCheckBoxColumn Header="Visible" Binding="{Binding IsVisible}" Width="Auto" />-->
+                    <DataGridTemplateColumn Header="Visible" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding Path=IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="btnClose" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,29,6" Content="Close" Width="90" />
+        </Grid>
+    </Border>
+</this:AnimatedControl>

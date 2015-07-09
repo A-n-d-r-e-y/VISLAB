@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="VisLab.Classes.Implementation.Analysis.Boundaries.Controls.CountersReportControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:settings="clr-namespace:VisLab.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" FontFamily="Segoe UI" FontSize="16" Background="Transparent" MinWidth="350" >
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/DataGridStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid Margin="40,6" Name="flyingGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+              Background="{StaticResource NormalBorderBrush}" OpacityMask="#D4000000" >
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="120" MaxWidth="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" Name="tbkHeader" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,15,0" FontWeight="Bold" FontSize="18" />
+            <GroupBox Header="Columns" Grid.RowSpan="3" Margin="10,5">
+                <StackPanel>
+                    <RadioButton Name="rbSelectAll" Content="Select all" Checked="rbSelectAll_Checked" IsChecked="True" />
+                    <RadioButton Name="rbOnlyWithData" Content="Only with data" Checked="rbOnlyWithData_Checked" />
+                        <RadioButton Name="rbCustom" Checked="rbCustom_Checked">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Custom" VerticalAlignment="Center" />
+                                <Button Content="Change" Margin="5,0,0,0" Width="50" FontSize="10" IsEnabled="{Binding ElementName=rbCustom, Path=IsChecked}" Click="rbCustom_Checked" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+            </GroupBox>
+            <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="6,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                    <TextBlock Text="Filter: " VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" Name="cbxColumnsList" Margin="1" SelectionChanged="cbxColumnsList_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Header}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBox Name="tbxFilter" Grid.Column="2" Margin="1" MinWidth="100" TextChanged="tbxFilter_TextChanged" />
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Margin="6,0" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                <Button Name="btnExportToExcel" Content="Export to Excel" Margin="2" Width="120" Click="btnExportToExcel_Click" />
+                <Button Grid.Column="1" Name="btnClose" Content="Close" Margin="2" Width="120" />
+                </Grid>
+        </Grid>
+            <DataGrid Grid.Row="1" Name="datagrid" Margin="10" AutoGenerateColumns="True" GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                  SelectionMode="Single" IsReadOnly="True" CanUserResizeRows="False" ClipboardCopyMode="IncludeHeader" ClipToBounds="False" Loaded="datagrid_Loaded" AutoGeneratingColumn="datagrid_AutoGeneratingColumn">
+                <!--<DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid>
+        </Grid>
+        <ContentControl Name="ccTopLayerHost" Content="{Binding Shadow}" />
+    </Grid>
+</UserControl>

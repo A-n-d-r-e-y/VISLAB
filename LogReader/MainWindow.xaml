@@ -1,0 +1,11 @@
+﻿<Window x:Class="LogReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+
+        <Border Background="Gray" OpacityMask="#D4000000">
+        <DataGrid Name="datagrid" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding}" GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                  SelectionMode="Single" IsReadOnly="True" CanUserResizeRows="False" ClipboardCopyMode="IncludeHeader" FontSize="16" ClipToBounds="False">
+        </DataGrid>
+        </Border>
+</Window>

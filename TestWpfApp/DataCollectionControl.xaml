@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="TestWpfApp.DataCollectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Background="Transparent" Foreground="Green" Cursor="Hand" ToolTip="Double click to view extended report"
+             d:DesignHeight="200" d:DesignWidth="200" FontFamily="Segoe UI">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/DataGridStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Grid.Column="1" BorderThickness="2" CornerRadius="10" Background="Transparent">
+        <DataGrid Name="datagrid" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding}" GridLinesVisibility="Horizontal" HeadersVisibility="Column"
+                  SelectionMode="Single" IsReadOnly="True" CanUserResizeRows="False" ClipboardCopyMode="IncludeHeader">
+            <DataGrid.GroupStyle>
+                <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter/>
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+        </DataGrid>
+        <Border.BorderBrush>
+            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                <GradientStop Color="#FFEF3131" Offset="0" />
+                <GradientStop Color="Transparent" Offset="1" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+    </Border>
+</UserControl>

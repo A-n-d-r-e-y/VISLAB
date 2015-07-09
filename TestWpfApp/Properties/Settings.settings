@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TestWpfApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TestWpfApp_mantis_MantisConnect" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.mantisbt.org/bugs/api/soap/mantisconnect.php</Value>
+    </Setting>
+    <Setting Name="TestWpfApp_vislab_MantisConnect" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://vislab.morozov.lv/tracking/api/soap/mantisconnect.php</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

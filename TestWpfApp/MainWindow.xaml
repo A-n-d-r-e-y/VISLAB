@@ -1,0 +1,24 @@
+﻿<Window x:Class="TestWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:this="clr-namespace:TestWpfApp"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <!--<Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform x:Name="trans" ScaleX="1" ScaleY="1" />
+                </Setter.Value>
+            </Setter>-->
+            <EventSetter Event="MouseWheel" Handler="Button_MouseWheel" />
+        </Style>
+        <this:MathConverter x:Key="mathConverter" />
+    </Window.Resources>
+
+    <Border Initialized="Border_Initialized">
+        <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center">
+            <this:DataCollectionControl VerticalAlignment="Center" HorizontalAlignment="Center" DataContext="{Binding}" />
+        </ContentControl>
+    </Border>
+</Window>

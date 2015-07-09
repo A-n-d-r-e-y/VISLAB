@@ -1,0 +1,73 @@
+﻿<Window x:Class="VisLab.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:VisLab.Controls"
+        xmlns:styles="clr-namespace:VisLab.Styles"
+        Title="MainWindow" Height="350" Width="525" MinHeight="350" MinWidth="525" FontFamily="Segoe UI"
+        Loaded="Window_Loaded" Name="wndMain" SizeChanged="wndMain_SizeChanged" Icon="/VisLab;component/Images/VISSIM.ICO">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <styles:PercentConverter x:Key="percentConverter" />
+            <styles:StringFormattingConverter x:Key="stringFormattingConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+            <GradientStop Color="#FFB8C8EB" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Expander.Expanded" SourceName="expander">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation From="0" To="1" Duration="0:0:0.25" Storyboard.TargetName="border" Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(ScaleTransform.ScaleY)"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Expander Name="expander"  VerticalAlignment="Top" Panel.ZIndex="600" Margin="5">
+            <Expander.Header>
+                <TextBlock Text="Project" Margin="10,0" FontStyle="Italic" Foreground="Gray" />
+            </Expander.Header>
+            <Border Margin="10,0,10,10" Name="border" CornerRadius="10" BorderBrush="Gray" BorderThickness="2" MouseUp="border_MouseUp">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#BAB8C8EB" Offset="0" />
+                        <GradientStop Color="#84FFFFFF" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.LayoutTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="0"/>
+                </Border.LayoutTransform>
+                <Grid Name="gExpanderGrid" HorizontalAlignment="Stretch" Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label Name="lblExperiment" Content="{Binding ExperimentNumber, Converter={StaticResource stringFormattingConverter}, ConverterParameter='Exp. Nr. {0}'}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Background="Transparent" />
+                    <controls:PlayerControl x:Name="pcPlayer" Grid.Column="1" Height="70" Width="210" HorizontalAlignment="Right" Margin="0,0,20,0" MaxHeight="140" MaxWidth="420" Click="pcPlayer_Click" />
+                </Grid>
+            </Border>
+        </Expander>
+        <ContentControl Name="ccControlsHost" Panel.ZIndex="500" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />
+        <ContentControl Name="ccControlsHost2" Panel.ZIndex="700" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  />
+        <controls:LeftArrowControl HorizontalAlignment="Left" Height="60" Width="60" Panel.ZIndex="600" MouseUp="LeftArrowControl_MouseUp" />
+        <controls:RightArrowControl HorizontalAlignment="Right" Height="60" Width="60" Panel.ZIndex="600" MouseUp="RightArrowControl_MouseUp" />
+    </Grid>
+</Window>

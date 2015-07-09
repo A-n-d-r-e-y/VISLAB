@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<configuration>
+<configSections>
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+        <section name="VisLab.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+</configSections>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup><applicationSettings>
+        <VisLab.Properties.Settings>
+            <setting name="VisLab_LoggingService_ClientLineService" serializeAs="String">
+                <value>http://apps.client-line.com/WebServices/Live.asmx</value>
+            </setting>
+            <setting name="VisLab_IssueTrackerService_MantisConnect" serializeAs="String">
+                <value>http://vislab.morozov.lv/tracking/api/soap/mantisconnect.php</value>
+            </setting>
+        </VisLab.Properties.Settings>
+    </applicationSettings>
+</configuration>
